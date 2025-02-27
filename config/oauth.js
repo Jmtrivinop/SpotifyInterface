@@ -1,9 +1,9 @@
 const {google} = require('googleapis');
 
 const oauth2Client = new google.auth.OAuth2(
-    "1050578482114-arv15kugb4btotriu2jds5g5k8042i8m.apps.googleusercontent.com",
-    "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",
-    "http://localhost:3000/api/auth/google/callback"
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
+    process.env.GOOGLE_REDIRECT_URI
     );
 
     // generate a url that asks permissions for Blogger and Google Calendar scopes
