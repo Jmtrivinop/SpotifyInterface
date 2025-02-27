@@ -4,32 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+    <script src="scripts/header.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Spotify Interface</title>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-brand">
-          <a class="navbar-item">
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-menu is-flex is-justify-content-space-between is-align-items-center px-5" style="width: 100%;">
       
-       Spotify Videos</a>
+      <!-- Sección izquierda (Configuración) -->
+      <div class="navbar-start is-flex is-align-items-center">
+        <a class="icon has-text-white mx-3" title="Configuración">
+          <i class="fas fa-cog fa-lg"></i>
+        </a>
+      </div>
+
+      <!-- Sección central (Home + Barra de búsqueda) -->
+      <div class="navbar-item is-flex is-align-items-center is-justify-content-center" style="flex-grow: 1;">
+        <a class="icon has-text-white mx-3" title="Inicio">
+          <i class="fas fa-home fa-lg"></i>
+        </a>
+
+        <!-- Ícono de búsqueda en móviles -->
+        <div class="is-hidden-tablet">
+          <a class="icon has-text-white mx-3" id="mobile-search-icon" title="Buscar">
+            <i class="fas fa-search fa-lg"></i>
+          </a>
         </div>
-        <div class="navbar-menu">
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <button class="button is-primary">Perfil</button>
+
+        <!-- Barra de búsqueda en pantallas grandes -->
+        <div class="control has-icons-left is-hidden-mobile">
+          <input class="input is-rounded has-background-dark has-text-white" type="text" placeholder="¿Qué deseas ver?" />
+          <span class="icon is-left has-text-grey-light">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- Sección derecha (Notificaciones, Amigos, Perfil) -->
+      <div class="navbar-end is-flex is-align-items-center">
+        <!-- Íconos en pantallas grandes -->
+        <div class="is-hidden-mobile is-flex">
+          <a class="icon has-text-white mx-3" title="Notificaciones">
+            <i class="fas fa-bell fa-lg"></i>
+          </a>
+          <a class="icon has-text-white mx-3" title="Amigos">
+            <i class="fas fa-users fa-lg"></i>
+          </a>
+          <a class="navbar-item mx-3" title="Perfil">
+            <i class="fa-solid fa-user fa-lg"></i>
+          </a>
+        </div>
+
+        <!-- Menú desplegable en móviles -->
+        <div class="dropdown is-right is-hidden-tablet" id="mobile-dropdown">
+          <div class="dropdown-trigger">
+            <button class="button is-dark" id="dropdown-button" aria-haspopup="true" aria-controls="dropdown-menu">
+              <span>Menú</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down"></i>
+              </span>
+            </button>
+          </div>
+
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a class="dropdown-item has-text-black is-flex is-align-items-center">
+                <i class="fas fa-bell mr-2"></i> Notificaciones
+              </a>
+              <a class="dropdown-item has-text-black is-flex is-align-items-center">
+                <i class="fas fa-users mr-2"></i> Amigos
+              </a>
+              <a class="dropdown-item has-text-black is-flex is-align-items-center">
+                <i class="fa-solid fa-user mr-2"></i> Perfil
+              </a>
             </div>
           </div>
         </div>
-      </nav>
-      <aside class="menu">
-        <p class="menu-label">Menú</p>
-        <ul class="menu-list">
-          <li><a class="is-active"> Inicio</a></li>
-          <li><a> Tendencias</a></li>
-          <li><a> Mis Videos</a></li>
-          <li><a> Playlists</a></li>
-        </ul>
-      </aside>
-      <button class="button">Button</button>
+      </div>
+    </div>
+
+    <!-- Barra de búsqueda en móviles (oculta por defecto) -->
+    <div class="is-hidden px-5 py-3" id="mobile-search">
+      <div class="control has-icons-left">
+        <input class="input is-rounded has-background-dark has-text-white" type="text" placeholder="¿Qué deseas ver?" />
+        <span class="icon is-left has-text-grey-light">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+    </div>
+</nav>
+
+
+
+
+
+  
+ 
+  
+  
+
+  
+  
+  
+      
 </body>
 </html>
