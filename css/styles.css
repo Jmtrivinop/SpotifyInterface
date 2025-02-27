@@ -21556,4 +21556,8 @@ has-background-danger.is-hoverable:active {
   pointer-events: all !important;
 }
 
-/*# sourceMappingURL=styles.css.map */
+
+.field {
+  overflow-x: auto;
+}
+
