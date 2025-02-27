@@ -1,0 +1,18 @@
+// @use "../node_modules/bulma/sass/base";
+// @use "../node_modules/bulma/sass/themes";
+
+// @use "../node_modules/bulma/sass/layout/section.scss";
+// @use "../node_modules/bulma/sass/layout/container.scss";
+// @use "../node_modules/bulma/sass/grid/columns.scss";
+// @use "../node_modules/bulma/sass/elements/box.scss";
+// @use "../node_modules/bulma/sass/elements/button.scss";
+
+// @use "../node_modules/bulma/sass/components/navbar.scss";
+
+// @use "../node_modules/bulma/sass/elements/icon.scss";
+
+@use "../node_modules/bulma/bulma.scss";
+
+.field{
+    overflow-x: auto;
+}
