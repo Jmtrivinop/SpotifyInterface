@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nodemon app.js",
     "sassTest": "npx sass sass/styles.scss css/styles.css -w"
   },
   "repository": {
@@ -18,7 +18,12 @@
   "homepage": "https://github.com/Jmtrivinop/SpotifyInterface#readme",
   "description": "",
   "dependencies": {
+    "axios": "^1.8.1",
     "bulma": "^1.0.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "googleapis": "^144.0.0",
+    "nodemon": "^3.1.9",
     "sass": "^1.85.1"
   }
 }
