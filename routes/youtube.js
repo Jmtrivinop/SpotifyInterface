@@ -1,6 +1,6 @@
 const Router = require('express')
 
-const {searchVideosByQuery, searchVideoById, getMyVideos, getMySubscriptions} = require('../DAL/youtubeDAL')
+const {searchVideosByQuery, searchVideoById, getMyVideos, getMySubscriptions, getMyPlaylist, getTrendingVideos} = require('../DAL/youtubeDAL')
 
 const {response, request} = require('express')
 
@@ -94,6 +94,41 @@ router.get('/getMySubscriptions', async (req = request, res = response) => {
 })
 
 
+router.get('/getMyPlaylist', async (req = request, res = response) => {
 
+    try {
+
+        const token = req.headers.authorization?.split(" ")[1];
+
+        if (!token) {
+
+            return res.status(401).json({error: 'Token requerido'})
+
+        }
+        
+        const response = await getMyPlaylist(token)
+
+        return res.status(200).json({message: response})
+
+    } catch (error) {
+        return res.status(500).json({error: error})
+    }
+
+})
+
+router.get('/getTrendingVideos', async (req = request, res = response) => {
+
+    try {
+        
+        const response = await getTrendingVideos()
+
+        return res.status(200).json({message: response})
+
+    } catch (error) {
+
+        return res.status(500).json({error: error})
+    }
+
+})
 
 module.exports = router
