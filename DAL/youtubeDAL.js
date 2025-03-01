@@ -18,7 +18,85 @@ async function searchVideosByQuery(query) {
     } catch (error) {
         console.error("Error al obtener los videos:", error.response.data);
     }
+}
+
+async function searchVideoById(videoId) {
+
+    try {
+        const response = await axios.get('https://www.googleapis.com/youtube/v3/videos', {
+            params: {
+                part: 'snippet',
+                id: videoId,
+                key: API_KEY
+            }
+
+        })
+
+        return response.data
+    } catch (error) {
+        
+        console.error('Error obteniendo el video', error)
+
+    }
 
 }
 
-module.exports = {searchVideosByQuery}
+async function getMyVideos(accesToken) {
+
+    try {
+        
+        const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+
+            headers: {
+                authorization: `Bearer ${accesToken}`
+            },
+            params: {
+
+                part: 'snippet',
+                forMine: true,
+                type: 'video'
+
+            }
+
+        })
+
+        return response.data
+
+    } catch (error) {
+        
+        console.error('Error obteniendo el video', error)
+
+    }
+
+}
+
+async function getMySubscriptions(accesToken) {
+
+    try {
+        
+        const response = await axios.get('https://www.googleapis.com/youtube/v3/subscriptions', {
+
+            headers: {
+                authorization: `Bearer ${accesToken}`
+            },
+            params: {
+
+                part: 'snippet',
+                mine: true,
+
+            }
+
+        })
+
+        return response.data
+
+    } catch (error) {
+        
+        console.error('Error obteniendo el video', error)
+
+    }
+
+
+}
+
+module.exports = {searchVideosByQuery, searchVideoById, getMyVideos, getMySubscriptions}
