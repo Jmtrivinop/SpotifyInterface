@@ -9,9 +9,13 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'))
+
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/youtube', require('./routes/youtube'));
-// app.use('/api/home', require('./routes/home'));
+app.use('/', require('./routes/front/index'));
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
