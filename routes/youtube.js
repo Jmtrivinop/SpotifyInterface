@@ -1,6 +1,6 @@
 const Router = require('express')
 
-const {searchVideosByQuery, searchVideoById, getMyVideos, getMySubscriptions, getMyPlaylist, getTrendingVideos} = require('../DAL/youtubeDAL')
+const {searchVideosByQuery, searchVideoById, getMyVideos, getMySubscriptions, getMyPlaylist, getTrendingVideos, getChannelById} = require('../DAL/youtubeDAL')
 
 const {response, request} = require('express')
 
@@ -121,6 +121,23 @@ router.get('/getTrendingVideos', async (req = request, res = response) => {
     try {
         
         const response = await getTrendingVideos()
+
+        return res.status(200).json({message: response})
+
+    } catch (error) {
+
+        return res.status(500).json({error: error})
+    }
+
+})
+
+router.get('/getChannelById/:channelId', async (req = request, res = response) => {
+
+    try {
+
+        const {channelId} = req.params
+        
+        const response = await getChannelById(channelId)
 
         return res.status(200).json({message: response})
 
