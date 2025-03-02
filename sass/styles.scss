@@ -13,6 +13,26 @@
 
 @use "../node_modules/bulma/bulma.scss";
 
+
+
 .field{
     overflow-x: auto;
+}
+
+html, body {
+
+    height: 100vh;
+    display: flex;
+
+}
+
+.column {
+
+    height: 100%;
+
+}
+
+.aside-menu {
+
+    height: 100%
 }
