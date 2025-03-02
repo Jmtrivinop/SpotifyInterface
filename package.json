@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nodemon app.js",
-    "sassTest": "npx sass sass/styles.scss css/styles.css -w"
+    "sassTest": "npx sass sass/styles.scss public/css/styles.css -w"
   },
   "repository": {
     "type": "git",
