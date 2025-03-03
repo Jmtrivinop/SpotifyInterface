@@ -21555,4 +21555,36 @@ has-background-danger.is-hoverable:active {
   pointer-events: all !important;
 }
 
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+.navbar-logo img {
+  max-height: 60px;
+  width: auto;
+}
+.navbar #mobile-search {
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+}
+.navbar #mobile-search.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+.navbar #mobile-search:not(.is-hidden) {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu.is-active {
+  display: block;
+}
+
 /*# sourceMappingURL=styles.css.map */

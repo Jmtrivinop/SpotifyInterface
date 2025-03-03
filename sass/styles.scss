@@ -1,2 +1,40 @@
 // Load Bulma's base styles and themes (including the minireset)
 @use "../node_modules/bulma/sass";
+
+.navbar {
+    &-logo {
+      display: flex;
+      align-items: center;
+  
+      img {
+        max-height: 60px; // Tamaño uniforme
+        width: auto;
+      }
+    }
+    #mobile-search {
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        pointer-events: none;
+    
+        &.is-hidden {
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(-10px);
+        }
+    
+        &:not(.is-hidden) {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(0);
+        }
+      }
+    
+  }
+  .dropdown-menu {
+    display: none;
+  }
+  
+  .dropdown-menu.is-active {
+    display: block;
+  }
+  
