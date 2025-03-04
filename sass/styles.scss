@@ -1,13 +1,12 @@
 
-
+@use "../node_modules/bulma/sass";
 @use "../node_modules/bulma/bulma.scss";
 
 .field{
     overflow-x: auto;
 }
 
-// Load Bulma's base styles and themes (including the minireset)
-@use "../node_modules/bulma/sass";
+
 
 .navbar {
     &-logo {
