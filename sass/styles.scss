@@ -51,13 +51,27 @@ html, body {
 
 .card {
 
+    width: 340px;
+    min-width: 320px;
     height: 100%;
 }
-
 
 .card-content {
 
     padding: 0.2rem;
+}
+
+.card-text {
+    width: calc(100% - 70px);
+}
+
+.tittle {
+
+    width: 100%;
+    white-space: nowrap;       /* Evita que el texto salte de línea */
+    overflow: hidden;          /* Oculta el contenido que se desborda */
+    text-overflow: ellipsis;   /* Muestra "..." cuando el texto es muy largo */
+
 }
 
 .card-info {
@@ -65,4 +79,14 @@ html, body {
     display: flex;
     gap: 15px;
 
+}
+
+.carrusel {
+    max-width: 600px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow-x: auto;
+    flex-direction: row;
 }

@@ -36,10 +36,13 @@ async function obtenerChannel(channelId) {
 
 }
 
-function createVideoCard(videoInfo, channelInfo) {
+async function obtenerMyPlaylist(accesToken) {
+  
 
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
+
+}
+
+function createVideoCard(videoInfo, channelInfo) {
     
     // Crear el contenedor principal
     const card = document.createElement("div");
@@ -85,7 +88,10 @@ function createVideoCard(videoInfo, channelInfo) {
     // Sección del texto
     const content = document.createElement("div");
     content.classList.add("content", 'card-text');
-    content.textContent = videoInfo.snippet.title
+
+    const title = document.createElement("p");
+    title.classList.add('tittle');
+    title.textContent = videoInfo.snippet.title
 
     const contentDescription = document.createElement("div");
     contentDescription.classList.add("content", "is-size-6", "has-text-grey", 'card-info');
@@ -101,6 +107,8 @@ function createVideoCard(videoInfo, channelInfo) {
     // Ensamblar el contenido
     contentDescription.appendChild(chanelName);
     contentDescription.appendChild(datePublished);
+
+    content.appendChild(title)
     content.appendChild(contentDescription);
     
     media.appendChild(mediaLeft);
@@ -112,9 +120,7 @@ function createVideoCard(videoInfo, channelInfo) {
     card.appendChild(cardImage);
     card.appendChild(cardContent);
 
-    cell.appendChild(card);
-
-    return cell;
+    return card;
 }
 
 async function renderTrendingVideos() {
@@ -123,7 +129,7 @@ async function renderTrendingVideos() {
 
     const itemsVideo = responseVideo.items;
 
-    const videoContainer = document.querySelector(".grid");
+    const videoContainer = document.querySelector(".carrusel");
     videoContainer.innerHTML = "";
 
     itemsVideo.forEach(async video => {
@@ -138,6 +144,8 @@ async function renderTrendingVideos() {
         const card = createVideoCard(video, channel);
         videoContainer.appendChild(card);
     });
+
+    console.log(videoContainer.clientWidth, videoContainer.scrollWidth);
 }
 
 renderTrendingVideos()
