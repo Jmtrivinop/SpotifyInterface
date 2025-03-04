@@ -14,7 +14,6 @@
 @use "../node_modules/bulma/bulma.scss";
 
 
-
 .field{
     overflow-x: auto;
 }
@@ -23,16 +22,47 @@ html, body {
 
     height: 100vh;
     display: flex;
+    width: 100%;
+
+}
+
+.columns {
+
+    width: 100%;
 
 }
 
 .column {
 
     height: 100%;
+    flex: 1;
 
 }
 
 .aside-menu {
 
     height: 100%
+}
+
+.main-content {
+
+    height: 100%
+}
+
+.card {
+
+    height: 100%;
+}
+
+
+.card-content {
+
+    padding: 0.2rem;
+}
+
+.card-info {
+
+    display: flex;
+    gap: 15px;
+
 }
