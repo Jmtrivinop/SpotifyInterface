@@ -1,18 +1,49 @@
-// @use "../node_modules/bulma/sass/base";
-// @use "../node_modules/bulma/sass/themes";
 
-// @use "../node_modules/bulma/sass/layout/section.scss";
-// @use "../node_modules/bulma/sass/layout/container.scss";
-// @use "../node_modules/bulma/sass/grid/columns.scss";
-// @use "../node_modules/bulma/sass/elements/box.scss";
-// @use "../node_modules/bulma/sass/elements/button.scss";
-
-// @use "../node_modules/bulma/sass/components/navbar.scss";
-
-// @use "../node_modules/bulma/sass/elements/icon.scss";
 
 @use "../node_modules/bulma/bulma.scss";
 
 .field{
     overflow-x: auto;
 }
+
+// Load Bulma's base styles and themes (including the minireset)
+@use "../node_modules/bulma/sass";
+
+.navbar {
+    &-logo {
+      display: flex;
+      align-items: center;
+  
+      img {
+        max-height: 60px; // Tamaño uniforme
+        width: auto;
+      }
+    }
+    #mobile-search {
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        pointer-events: none;
+    
+        &.is-hidden {
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(-10px);
+        }
+    
+        &:not(.is-hidden) {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(0);
+        }
+      }
+    
+  }
+  .dropdown-menu {
+    display: none;
+  }
+  
+  .dropdown-menu.is-active {
+    display: block;
+  }
+  
+
