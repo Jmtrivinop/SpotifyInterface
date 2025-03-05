@@ -1,5 +1,13 @@
 
 const menu_items =  document.querySelectorAll('.menu-item');
+const playButton = document.querySelector('.play');
+
+const siguenteButton = document.querySelector('.siguiente');
+const atrasButton = document.querySelector('.atras');
+
+playButton.addEventListener('click', playPauseVideo);
+siguenteButton.addEventListener('click', siguienteVideo);
+atrasButton.addEventListener('click', atrasVideo);
 
 menu_items.forEach(item => {
 
@@ -24,18 +32,23 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
+
 var player;
+var currentVideoId = ''
+var videosCarrusel = []
+
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '390',
     width: '640',
-    videoId: 'M7lc1UVf-VE',
+    videoId: '',
     playerVars: {
-      'playsinline': 1
+      'playsinline': 1,
+      controls: 0,
     },
     events: {
       'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
+      'onStateChange': onPlayerStateChange,
     }
   });
 }
@@ -45,16 +58,61 @@ function onPlayerReady(event) {
   event.target.playVideo();
 }
 
+function playPauseVideo(event) {
+
+    if (player.getPlayerState() === 1) {
+        player.pauseVideo();
+    } else {
+        player.playVideo();
+    }
+
+}
+
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
+  if (event.data == YT.PlayerState.PLAYING) {
+
+    playButton.classList.remove('fa-play');
+    playButton.classList.add('fa-pause');
+
+  }
+
+  if (event.data == YT.PlayerState.PAUSED) {
+
+    playButton.classList.remove('fa-pause');
+    playButton.classList.add('fa-play');
+
   }
 }
+
+function siguienteVideo() {
+
+  const videoActualId = player.getVideoData().video_id;
+
+  const videoActual = videosCarrusel.find(video => video.id === videoActualId);
+
+  const index = videosCarrusel.indexOf(videoActual);
+
+  player.loadVideoById(videosCarrusel[index + 1].id);
+
+  renderReproductorInfo(videosCarrusel[index + 1].snippet.thumbnails.high.url, videosCarrusel[index + 1].snippet.title, videosCarrusel[index + 1].snippet.channelTitle)
+}
+
+function atrasVideo() {
+  const videoActualId = player.getVideoData().video_id;
+
+  const videoActual = videosCarrusel.find(video => video.id === videoActualId);
+
+  const index = videosCarrusel.indexOf(videoActual);
+
+  player.loadVideoById(videosCarrusel[index - 1].id);
+
+  renderReproductorInfo(videosCarrusel[index - 1].snippet.thumbnails.high.url, videosCarrusel[index - 1].snippet.title, videosCarrusel[index - 1].snippet.channelTitle)
+}
+
 function stopVideo() {
   player.stopVideo();
 }
@@ -83,6 +141,17 @@ async function obtenerMyPlaylist(accesToken) {
   
 
 
+}
+
+function renderReproductorInfo(img, title, channel) {
+
+    const imgReproductor = document.querySelector('.reproductor-img');
+    const titleReproductor = document.querySelector('.reproductor-title');
+    const channelReproductor = document.querySelector('.reproductor-channel');
+
+    imgReproductor.src = img;
+    titleReproductor.textContent = title;
+    channelReproductor.textContent = channel;
 }
 
 function createVideoCard(videoInfo, channelInfo) {
@@ -167,6 +236,8 @@ function createVideoCard(videoInfo, channelInfo) {
 
         player.loadVideoById(videoInfo.id);
 
+        renderReproductorInfo(videoInfo.snippet.thumbnails.high.url, videoInfo.snippet.title, videoInfo.snippet.channelTitle)
+
     })
 
     return card;
@@ -177,6 +248,8 @@ async function renderTrendingVideos() {
     const responseVideo = await obtenerTrendingVideos()
 
     const itemsVideo = responseVideo.items;
+
+    console.log('items', videosCarrusel)
 
     const videoContainer = document.querySelector(".carrusel");
     videoContainer.innerHTML = "";
@@ -192,11 +265,20 @@ async function renderTrendingVideos() {
 
         const card = createVideoCard(video, channel);
         videoContainer.appendChild(card);
+
+        videosCarrusel.push(video)
     });
 
     console.log(videoContainer.clientWidth, videoContainer.scrollWidth);
 }
 
 
+async function main(params) {
+  
+  await renderTrendingVideos()
 
-renderTrendingVideos()
+  console.log('carrusel', videosCarrusel)
+
+}
+
+main();
