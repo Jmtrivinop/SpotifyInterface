@@ -10,7 +10,6 @@
 html, body {
 
     height: 100vh;
-    display: flex;
     width: 100%;
 
 }
@@ -51,6 +50,11 @@ html, body {
   .dropdown-menu.is-active {
     display: block;
   }
+
+main {
+    height: calc(100% - 60px);
+    width: 100%;
+}  
 
 .columns {
 
@@ -129,4 +133,5 @@ html, body {
     overflow-x: auto;
     flex-direction: row;
 }
+
 
