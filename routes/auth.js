@@ -13,9 +13,6 @@ router.get('/google', (req, res) => {
     scope: scopes
     });
 
-    console.log('Authorize this app by visiting this url:', url);
-    console.log(url);
-
     return res.redirect(url);
 
 });

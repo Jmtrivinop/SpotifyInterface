@@ -2,11 +2,18 @@
 @use "../node_modules/bulma/sass";
 @use "../node_modules/bulma/bulma.scss";
 
+
 .field{
     overflow-x: auto;
 }
 
+html, body {
 
+    height: 100vh;
+    display: flex;
+    width: 100%;
+
+}
 
 .navbar {
     &-logo {
@@ -44,5 +51,82 @@
   .dropdown-menu.is-active {
     display: block;
   }
-  
+
+.columns {
+
+    width: 100%;
+
+}
+
+.column {
+
+    height: 100%;
+    flex: 1;
+
+}
+
+.aside-menu {
+
+    height: 100%
+}
+
+.main-content {
+
+    height: 100%
+}
+
+.video-container {
+
+    width: 100%;
+    height: 60%;
+    
+}
+
+#player {
+
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+
+    width: 340px;
+    min-width: 320px;
+    height: 100%;
+}
+
+.card-content {
+
+    padding: 0.2rem;
+}
+
+.card-text {
+    width: calc(100% - 70px);
+}
+
+.tittle {
+
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.card-info {
+
+    display: flex;
+    gap: 15px;
+
+}
+
+.carrusel {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow-x: auto;
+    flex-direction: row;
+}
 
