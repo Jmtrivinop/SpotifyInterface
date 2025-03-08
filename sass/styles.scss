@@ -21,11 +21,16 @@ body {
   font-family: 'Poppins', sans-serif;
   background: $background-color;
   color: $text-color;
+  display: flex;
+  flex-direction: column;
 }
 
 html, body {
-  height: 100vh;
+  height: 105%;
   width: 100%;
+  margin: 0;
+  padding: 0;
+  
 }
 
 .section {
@@ -88,7 +93,10 @@ main {
 }
 
 .main-content {
-  height: 100%;
+  max-height: 100vh; 
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
 }
 
 .aside-menu {
@@ -126,15 +134,15 @@ main {
   font-weight: bold;
 }
 
-@media screen and (max-width: 768px) {
-  .aside-menu {
-    padding: 1rem;
-  }
-}
 
-.video-container, #player {
+
+.video-container {
   width: 100%;
-  height: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem; // Espacio entre el video y el carrusel
 }
 
 .card {
@@ -147,19 +155,43 @@ main {
   border: 1px solid $glass-border;
   box-shadow: 0 4px 10px $glass-shadow;
   display: flex;
+  flex: 1 1 340px; 
   flex-direction: column;
-  justify-content: space-between; // Mantiene los elementos dentro
-  overflow: hidden; // Evita que el texto sobresalga
+  justify-content: space-between; 
+  overflow: hidden; 
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 12px rgba(217, 217, 217, 0.3), -6px -6px 12px rgba(255, 255, 255, 0.3);
+  }
+  
 
   .card-content {
+    
     padding: 0.2rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     text-align: center;
   }
+  .card-text {
+    
+    flex-grow: 1; // Hace que el texto se expanda dentro del espacio disponible
+    overflow: hidden; // Oculta el contenido que se sale
+    text-overflow: ellipsis; // Muestra "..." si el texto es demasiado largo
+    display: -webkit-box;
+    -webkit-line-clamp: 2; // Máximo de líneas visibles
+    line-clamp: 2; // Máximo de líneas visibles
+    -webkit-box-orient: vertical;
+    
+  }
+  .card-info{
+    color: $text-color !important;
+    
+  }
 
   .tittle {
+    color: $text-color !important;
     white-space: normal;
     word-wrap: break-word;
   }
@@ -172,6 +204,7 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: $text-color;
 }
 
 .carrusel-container {
@@ -193,7 +226,9 @@ main {
   flex-direction: column;
   justify-content: flex-end;
 }
-
+.video-info-text{
+  color: $text-color !important;
+}
 .video-player {
   width: 100%;
   display: flex;
@@ -205,8 +240,10 @@ main {
   border-radius: 10px;
   border: 1px solid $glass-border;
   box-shadow: 0 4px 10px $glass-shadow;
+  
 
   .video-info {
+    color: $text-color;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -269,14 +306,14 @@ main {
 
   #section-aside-menu {
     width: 100%;
-    max-height: 50px; // Controla la altura para que no ocupe mucho espacio
+    max-height: 150px; 
     overflow-x: auto; // Permite hacer scroll si hay muchas opciones
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 200px; 
     padding: 0.5rem;
-    border-radius: 0px; // Opcional: eliminar esquinas redondeadas
+    border-radius: 0px; 
   }
 
   .menu-list {
@@ -290,4 +327,37 @@ main {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
+  .column-is-10 {
+    overflow: hidden; // Evita que el carrusel sobresalga
+    max-width: 100%; // Asegura que el contenido no se expanda más allá del box
+  }
+  .box-main-content{
+    
+    overflow: hidden; // Evita que el carrusel sobresalga
+    max-width: 100%; // Asegura que el contenido no se expanda más allá del box
+    
+  }
+  
+  .carrusel-container {
+    display: flex;
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    max-width: 100%; 
+  }
+  
+  .carrusel {
+    display: flex;
+    gap: 1rem; 
+  }
+  
+  .card {
+    flex: 0 0 auto; // Evita que las cards crezcan más de lo necesario
+    max-width: 250px; 
+  }
+  
+  .image img {
+    max-width: 100%; 
+    height: auto; 
+  }
+  
 }
