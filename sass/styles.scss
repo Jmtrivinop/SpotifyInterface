@@ -2,19 +2,42 @@
 @use "../node_modules/bulma/bulma.scss";
 
 // Variables
-$primary-color: #6C63FF;
-$secondary-color: #FF6584;
-$background-color: linear-gradient(135deg, rgba(46, 47, 62, 0.8), rgba(28, 29, 42, 0.8));
-$text-color: #E0E0E0;
-$glass-background: rgba(255, 255, 255, 0.15);
-$glass-border: rgba(255, 255, 255, 0.3);
-$glass-shadow: rgba(0, 0, 0, 0.2);
+// Colores principales
+$primary-color: rgba(108, 99, 255, 0.8); // Más translúcido para efectos suaves
+$secondary-color: rgba(255, 101, 132, 0.8);
+$text-color-nav: #E0E0E0;  // Gris claro para buena legibilidad
+$text-color: black;
+
+// Fondo general oscuro para resaltar el efecto glass
+// Fondo con más color y profundidad
+$background-color: linear-gradient(135deg, #6C63FF 0%, #FF6584 50%, #E0E0E0 100%);
+
+// Efecto Glassmorfismo mejorado
+$glass-background: rgba(255, 255, 255, 0.25); // Más claro
+$glass-border: rgba(255, 255, 255, 0.4); // Más visible
+$glass-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2); // Sombras más intensas
+$glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+
+
 
 :root {
   --primary-color: #{$primary-color};
   --secondary-color: #{$secondary-color};
   --background-color: #{$background-color};
   --text-color: #{$text-color};
+  --glass-background: #{$glass-background};
+  --glass-border: #{$glass-border};
+  --glass-shadow: #{$glass-shadow};
+  --glass-gradient: #{$glass-gradient};
+  --text-color-nav: #{$text-color-nav};
+
+}
+.section, .aside-menu, .video-player, .box, .card {
+  background: $glass-gradient;
+  backdrop-filter: blur(20px);
+  border-radius: 15px;
+  border: 2px solid $glass-border;
+  box-shadow: $glass-shadow;
 }
 
 body {
@@ -26,7 +49,7 @@ body {
 }
 
 html, body {
-  height: 105%;
+  min-height: 100vh; 
   width: 100%;
   margin: 0;
   padding: 0;
@@ -43,13 +66,19 @@ html, body {
 }
 
 .navbar {
+  background: linear-gradient(135deg, rgba(28, 29, 42, 0.9), rgba(46, 47, 62, 0.9)); // Fondo oscuro con transparencias
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2); // Borde sutil para resaltar
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Sombra suave
+  color: $text-color-nav !important; // Mantener contraste
+
   &-logo {
     display: flex;
     align-items: center;
 
     img {
-      max-height: 60px;
+      max-height: 50px;
       width: auto;
+      filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.3)); // Efecto luminoso sutil
     }
   }
 
@@ -68,7 +97,20 @@ html, body {
       transform: translateY(0);
     }
   }
+
+  
+  .navbar-icons {
+    color: white;
+    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5));
+    transition: 0.3s;
+
+    &:hover {
+      color: $primary-color;
+      transform: scale(1.1);
+    }
+  }
 }
+
 
 .dropdown-menu {
   display: none;
@@ -82,6 +124,7 @@ html, body {
 }
 
 main {
+  flex: 1;
   height: calc(100% - 60px);
   width: 100%;
 }
@@ -102,17 +145,16 @@ main {
 .aside-menu {
   background: $glass-background;
   backdrop-filter: blur(20px);
+  overflow-x: auto;
   border-radius: 15px;
   border: 1px solid $glass-border;
   box-shadow: 0 4px 10px $glass-shadow;
   padding: 1.5rem;
+  flex-wrap: wrap; 
+
 }
 
-.menu-label {
-  color: $primary-color;
-  font-weight: bold;
-  text-transform: uppercase;
-}
+
 
 .menu-list a {
   display: block;
@@ -122,7 +164,11 @@ main {
   font-weight: 600;
   transition: all 0.3s ease;
 }
-
+.menu-label {
+  color: $primary-color;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .menu-list a:hover {
   background: rgba(108, 99, 255, 0.3);
   color: white;
@@ -130,7 +176,7 @@ main {
 
 .menu-list .is-active {
   background: $primary-color;
-  color: white;
+  color: black;
   font-weight: bold;
 }
 
@@ -142,20 +188,20 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem; // Espacio entre el video y el carrusel
+
 }
 
 .card {
   width: 340px;
   min-width: 320px;
-  height: 100%;
+  height: 262px;
   background: $glass-background;
   backdrop-filter: blur(15px);
   border-radius: 15px;
   border: 1px solid $glass-border;
   box-shadow: 0 4px 10px $glass-shadow;
   display: flex;
-  flex: 1 1 340px; 
+  text-overflow: ellipsis; 
   flex-direction: column;
   justify-content: space-between; 
   overflow: hidden; 
@@ -211,6 +257,7 @@ main {
   height: 500px;
 }
 
+
 .carrusel {
   width: 100%;
   display: flex;
@@ -224,7 +271,7 @@ main {
 .video-player-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .video-info-text{
   color: $text-color !important;
@@ -250,6 +297,7 @@ main {
   }
 
   .controllers-container {
+    color: $text-color !important;
     display: flex;
     gap: 1rem;
   }
@@ -290,7 +338,9 @@ main {
     }
   }
 }
-
+.icon-text{
+  color: $text-color !important;
+}
 .icon {
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -306,7 +356,7 @@ main {
 
   #section-aside-menu {
     width: 100%;
-    max-height: 150px; 
+   
     overflow-x: auto; // Permite hacer scroll si hay muchas opciones
     display: flex;
     align-items: center;

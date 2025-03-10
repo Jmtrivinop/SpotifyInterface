@@ -39,8 +39,7 @@ var videosCarrusel = []
 
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    height: '390',
-    width: '640',
+    width: '100%',
     videoId: '',
     playerVars: {
       'playsinline': 1,
