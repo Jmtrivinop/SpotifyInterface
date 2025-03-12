@@ -49,7 +49,7 @@ body {
 }
 
 html, body {
-  min-height: 100vh; 
+  height: 100vh; 
   width: 100%;
   margin: 0;
   padding: 0;
@@ -133,19 +133,18 @@ html, body {
 }
 
 main {
-  flex: 1;
-  height: calc(100% - 60px);
+
   width: 100%;
+  height: calc(100% - 60px);
 }
 
 .columns, .column {
   width: 100%;
-  height: 100%;
-  flex: 1;
 }
 
 .main-content {
-  max-height: 100vh; 
+  max-height: 100%;
+  height: 100%;
   overflow: hidden; 
   display: flex;
   flex-direction: column;
@@ -163,7 +162,11 @@ main {
 
 }
 
+.menu-list li {
 
+  margin-top: 40px;
+
+}
 
 .menu-list a {
   display: block;
@@ -185,8 +188,8 @@ main {
 
 .menu-list .is-active {
   background: $primary-color;
-  color: black;
-  font-weight: bold;
+  color: white;
+
 }
 
 
@@ -204,6 +207,7 @@ main {
   width: 340px;
   min-width: 320px;
   height: 262px;
+  max-height: 262px;
   background: $glass-background;
   backdrop-filter: blur(15px);
   border-radius: 15px;
@@ -223,43 +227,51 @@ main {
 
   .card-content {
     
+    height: calc(100% - 159px);
     padding: 0.2rem;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: center;
+
+    .media {
+      height: 100%;
+      width: 100%;
+    }
   }
+
+
+
   .card-text {
     
-    flex-grow: 1; // Hace que el texto se expanda dentro del espacio disponible
+    height: 100%;
+    width: calc(100% - 48px);
+    white-space: nowrap;
     overflow: hidden; // Oculta el contenido que se sale
     text-overflow: ellipsis; // Muestra "..." si el texto es demasiado largo
-    display: -webkit-box;
-    -webkit-line-clamp: 2; // Máximo de líneas visibles
-    line-clamp: 2; // Máximo de líneas visibles
-    -webkit-box-orient: vertical;
     
+    > * {
+
+      white-space: nowrap;
+      overflow: hidden; // Oculta el contenido que se sale
+      text-overflow: ellipsis; 
+      width: 100%;
+
+    }
+
   }
+
   .card-info{
-    color: $text-color !important;
+
+    display: flex;
+    gap: 20px;
+
+    > * {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
     
   }
 
-  .tittle {
-    color: $text-color !important;
-    white-space: normal;
-    word-wrap: break-word;
-  }
   
-}
-
-
-.tittle {
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: $text-color;
 }
 
 .carrusel-container {
@@ -351,7 +363,7 @@ main {
     transition: color 0.2s ease;
 
     &:hover {
-      color: $primary-color;
+      color: white;
     }
   }
 }
@@ -388,12 +400,15 @@ main {
     flex-direction: row;
     width: 100%;
     justify-content: space-around;
+
   }
 
   .menu-list a {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
+
+  
   .column-is-10 {
     overflow: hidden; // Evita que el carrusel sobresalga
     max-width: 100%; // Asegura que el contenido no se expanda más allá del box
